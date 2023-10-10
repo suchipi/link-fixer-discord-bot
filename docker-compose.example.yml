@@ -1,0 +1,10 @@
+# 1) Copy this file from docker-compose.example.yml to docker-compose.yml
+# 2) Edit the `environment` section to use your bot's token
+#     i.e. `DISCORD_BOT_TOKEN=123456.789.10`
+# 3) execute `docker compose up` to start the bot
+
+services:
+  bot:
+    build: .
+    environment:
+      - DISCORD_BOT_TOKEN=your.bot.token.here

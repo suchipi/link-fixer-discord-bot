@@ -1,17 +1,15 @@
-# Discord "Link Fixer" bot
+# twitfix for Discord
 
-when someone posts a message with a twitter.com or x.com link, it replies with a vxtwitter.com version of that link
+A simple Discord bot that replies to messages containing `x.com`/`twitter.com` links with an equivalent `fxtwitter.com` link for better embed support.
 
 ## Usage
 
-- copy src/config.example.json to src/config.json
-- add your bot token to src/config.json
-- install Node.js
-- `npm install`
-- `npm start`
+1. Copy `docker-compose.example.yml` to `docker-compose.yml`
+2. Edit `docker-compose.yml` and change the line reading `DISCORD_BOT_TOKEN=` to specify your bot's token
+3. Run `docker compose up -d` to start the bot
 
 See [discordjs.guide](https://discordjs.guide/preparations/setting-up-a-bot-application.html#creating-your-bot) for instructions on how to install Node.js, set up a bot, get a token, and add it to a server
 
 ## License
 
-Public Domain
+See LICENSE.txt

@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "build": "rm -rf dist && tsc",
+    "start": "npm run build && node dist/index.js"
+  },
+  "dependencies": {
+    "discord.js": "^14.13.0"
+  },
+  "devDependencies": {
+    "prettier": "^3.0.3",
+    "typescript": "^5.2.2"
+  }
+}

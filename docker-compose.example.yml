@@ -8,3 +8,4 @@ services:
     build: .
     environment:
       - DISCORD_BOT_TOKEN=your.bot.token.here
+      - FXTWITTER_URL=fxtwitter.com

@@ -1,3 +1,5 @@
+import { env } from "process";
+
 // NOTE: regexp must have the 'g' flag or else `matchAll` will throw
 function getUrls(content: string, regexp: RegExp): Array<string> {
   const urls: Array<string> = [];
@@ -15,7 +17,7 @@ export const replacements: {
     const urls = getUrls(content, /https?:\/\/x\.com\/[^\s]+/g);
     if (urls.length > 0) {
       return urls
-        .map((url) => url.replace("//x.com/", "//vxtwitter.com/"))
+        .map((url) => url.replace("//x.com/", `//${env.FXTWITTER_URL}/`))
         .join("\n");
     } else {
       return null;
@@ -25,7 +27,7 @@ export const replacements: {
     const urls = getUrls(content, /https?:\/\/twitter\.com\/[^\s]+/g);
     if (urls.length > 0) {
       return urls
-        .map((url) => url.replace("//twitter.com/", "//vxtwitter.com/"))
+        .map((url) => url.replace("//twitter.com/", `//${env.FXTWITTER_URL}/`))
         .join("\n");
     } else {
       return null;

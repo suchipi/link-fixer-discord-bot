@@ -10,15 +10,20 @@ function getUrls(content: string, regexp: RegExp): Array<string> {
   return urls;
 }
 
+function replaceAndClean(content: string): string {
+  let c = content.replace(/\/\/(x|twitter).com\//, `//${env.FXTWITTER_URL}/`);
+  c = c.replace(/\?.*/, "");
+
+  return c;
+}
+
 export const replacements: {
   [identifier: string]: (content: string) => string | null;
 } = {
   "//x.com/": (content) => {
     const urls = getUrls(content, /https?:\/\/x\.com\/[^\s]+/g);
     if (urls.length > 0) {
-      return urls
-        .map((url) => url.replace("//x.com/", `//${env.FXTWITTER_URL}/`))
-        .join("\n");
+      return urls.map((url) => replaceAndClean(url)).join("\n");
     } else {
       return null;
     }
@@ -26,9 +31,7 @@ export const replacements: {
   "//twitter.com/": (content) => {
     const urls = getUrls(content, /https?:\/\/twitter\.com\/[^\s]+/g);
     if (urls.length > 0) {
-      return urls
-        .map((url) => url.replace("//twitter.com/", `//${env.FXTWITTER_URL}/`))
-        .join("\n");
+      return urls.map((url) => replaceAndClean(url)).join("\n");
     } else {
       return null;
     }

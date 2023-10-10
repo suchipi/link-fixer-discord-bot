@@ -1,0 +1,10 @@
+name: Lint TypeScript with Prettier
+on: [push, pull_request]
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install dependencies with NPM
+        run: npm ci
+      - name: Lint src/**/*.ts with Prettier
+        run: npm run lint

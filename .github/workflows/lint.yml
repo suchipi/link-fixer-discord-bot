@@ -1,7 +1,7 @@
-name: Lint TypeScript with Prettier
+name: Lint TypeScript and build Dockerfile
 on: [push, pull_request]
 jobs:
-  lint:
+  prettier-lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -23,3 +23,11 @@ jobs:
 
       - name: Lint src/**/*.ts with Prettier
         run: npm run lint
+
+  docker-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Build Docker image
+        run: docker build . --file Dockerfile --tag twitfix-for-discord:$(date +%s)

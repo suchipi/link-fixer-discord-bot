@@ -4,7 +4,21 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with: node-version: 'lts'
+
+      - name: Cache NPM Dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: npm-${{ hashFiles('package-lock.json') }}
+          restore-keys: npm-
+
       - name: Install dependencies with NPM
-        run: npm ci
+        run: npm ci --ignore-scripts
+
       - name: Lint src/**/*.ts with Prettier
         run: npm run lint

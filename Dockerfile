@@ -1,7 +1,7 @@
 FROM node:lts-alpine
 
-LABEL org.opencontainers.image.title="twitfix for Discord" \
-      org.opencontainers.image.description="A Discord bot that replies to messages containing x.com/twitter.com lins with fxtwitter.com links for better embed support." \
+LABEL org.opencontainers.image.title="LinkFix for Discord" \
+      org.opencontainers.image.description="LinkFix is a Discord bot that replies to messages containing annoying links (Twitter, YouTube Shorts) with better ones (fxtwitter, youtu.be)" \
       org.opencontainers.image.authors="Lily Skye <me@suchipi.com>, Ralph <ralph@podaboutli.st>" \
       org.opencontainers.image.licenses="AGPL-3.0-or-later"
 

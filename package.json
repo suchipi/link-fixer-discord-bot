@@ -19,7 +19,8 @@
   "scripts": {
     "build": "rm -rf dist && tsc",
     "start": "node dist/index.js",
-    "lint": "prettier src/**/*.ts --check"
+    "lint": "prettier src/**/*.ts --check",
+    "prettier-format": "prettier src/**/*.ts --write"
   },
   "dependencies": {
     "@types/node": "^20.8.4",

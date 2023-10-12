@@ -25,6 +25,13 @@
     "email": "ralph@podaboutli.st",
     "url": "https://podaboutli.st/discord"
   },
+  "contributors": [
+    {
+      "name": "suchipi",
+      "email": "me@suchipi.com",
+      "url": "https://suchipi.com"
+    }
+  ],
   "repository": "github:podaboutlist/linkfix-for-discord",
   "scripts": {
     "build": "rm -rf dist && tsc",

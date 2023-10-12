@@ -4,8 +4,8 @@
 # 3) execute `docker compose up` to start the bot
 
 services:
-  bot:
-    build: .
+  linkfix_bot:
+    image: ghcr.io/podaboutlist/linkfix-for-discord:latest
     environment:
       - DISCORD_BOT_TOKEN=your.bot.token.here
       - FXTWITTER_URL=fxtwitter.com

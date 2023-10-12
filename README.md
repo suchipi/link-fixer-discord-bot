@@ -1,6 +1,6 @@
 # LinkFix for Discord
 
-![GitHub Actions linting workflow badge](https://img.shields.io/github/actions/workflow/status/podaboutlist/linkfix-for-discord/lint.yml?style=plastic&logo=github&label=code%20style&labelColor=24292e) ![ghcr.io release badge](https://img.shields.io/github/actions/workflow/status/podaboutlist/linkfix-for-discord/publish-image.yml?style=plastic&logo=github&label=ghcr.io%20release&labelColor=24292e)
+[![GitHub Actions linting workflow badge][5]][4] [![ghcr.io release badge][6]][3]
 
 <p align="center">
   <img src="./media/github-social-preview.png" alt="LinkFix Logo" width="400" />
@@ -38,3 +38,7 @@ See `LICENSE.txt`
 
 [1]: https://discord.com/oauth2/authorize?client_id=385950397493280805&scope=bot&permissions=274878286912
 [2]: https://discordjs.guide/preparations/setting-up-a-bot-application.html#creating-your-bot
+[3]: https://github.com/podaboutlist/linkfix-for-discord/pkgs/container/linkfix-for-discord
+[4]: https://github.com/podaboutlist/linkfix-for-discord/actions/workflows/lint.yml
+[5]: https://img.shields.io/github/actions/workflow/status/podaboutlist/linkfix-for-discord/lint.yml?style=plastic&logo=github&label=code%20style&labelColor=24292e
+[6]: https://img.shields.io/github/actions/workflow/status/podaboutlist/linkfix-for-discord/publish-image.yml?style=plastic&logo=github&label=ghcr.io%20release&labelColor=24292e

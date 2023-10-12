@@ -1,4 +1,5 @@
-import { env } from "process";
+// import dotenv from "dotenv";
+// dotenv.config();
 
 // NOTE: regexp must have the 'g' flag or else `matchAll` will throw
 function getUrls(content: string, regexp: RegExp): Array<string> {
@@ -10,8 +11,20 @@ function getUrls(content: string, regexp: RegExp): Array<string> {
   return urls;
 }
 
-function replaceAndClean(content: string): string {
-  let c = content.replace(/\/\/(x|twitter).com\//, `//${env.FXTWITTER_URL}/`);
+function fixYTShortsURL(content: string): string {
+  let c = content.replace(/(www\.)?(youtube.com\/shorts\/)/, "youtu.be/");
+  c = c.replace(/\?.*/, "");
+
+  return c;
+}
+
+function fixTwitterURL(content: string): string {
+  let c = content.replace(
+    /\/\/(x|twitter).com\//,
+    `//${process.env.FXTWITTER_URL}/`,
+  );
+  // TODO: Configure a more robust way of stripping all the tracking crap off
+  //       of YouTube URLS (currently `(?|&)si=<trackingid>`)
   c = c.replace(/\?.*/, "");
 
   return c;
@@ -23,7 +36,7 @@ export const replacements: {
   "//x.com/": (content) => {
     const urls = getUrls(content, /https?:\/\/x\.com\/[^\s]+/g);
     if (urls.length > 0) {
-      return urls.map((url) => replaceAndClean(url)).join("\n");
+      return urls.map((url) => fixTwitterURL(url)).join("\n");
     } else {
       return null;
     }
@@ -31,7 +44,15 @@ export const replacements: {
   "//twitter.com/": (content) => {
     const urls = getUrls(content, /https?:\/\/twitter\.com\/[^\s]+/g);
     if (urls.length > 0) {
-      return urls.map((url) => replaceAndClean(url)).join("\n");
+      return urls.map((url) => fixTwitterURL(url)).join("\n");
+    } else {
+      return null;
+    }
+  },
+  "youtube.com/shorts/": (content) => {
+    const urls = getUrls(content, /https?:\/\/(www\.)?youtube\.com\/[^\s]+/g);
+    if (urls.length > 0) {
+      return urls.map((url) => fixYTShortsURL(url)).join("\n");
     } else {
       return null;
     }

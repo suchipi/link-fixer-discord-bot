@@ -3,7 +3,17 @@
   "displayName": "LinkFix for Discord",
   "description": "LinkFix is a Discord bot that replies to messages containing annoying links (Twitter, YouTube Shorts) with better ones (fxtwitter, youtu.be)",
   "version": "1.0.0",
-  "keywords": ["discord", "discord.js", "discord-bot", "twitter", "fxtwitter", "vxtwitter", "youtube", "youtu.be", "youtube-shorts"],
+  "keywords": [
+    "discord",
+    "discord.js",
+    "discord-bot",
+    "twitter",
+    "fxtwitter",
+    "vxtwitter",
+    "youtube",
+    "youtu.be",
+    "youtube-shorts"
+  ],
   "homepage": "https://podaboutli.st/discord",
   "bugs": {
     "url": "https://github.com/podaboutlist/linkfix-for-discord/issues",
@@ -25,6 +35,7 @@
   "dependencies": {
     "@types/node": "^20.8.4",
     "discord.js": "^14.13.0",
+    "dotenv": "^16.3.1",
     "typescript": "^5.2.2"
   },
   "devDependencies": {

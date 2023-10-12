@@ -1,7 +1,8 @@
 import { Client, Events, GatewayIntentBits } from "discord.js";
 import { replacements } from "./replacements";
-//import { token } from "./config.json";
-import { env } from "process";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const replacementsEntries = Object.entries(replacements);
 
@@ -43,4 +44,4 @@ client.on(Events.MessageCreate, (message) => {
 });
 
 // Log in to Discord with your client's token
-client.login(env.DISCORD_BOT_TOKEN);
+client.login(process.env.DISCORD_BOT_TOKEN);

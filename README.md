@@ -2,7 +2,9 @@
 
 ![GitHub Actions linting workflow badge](https://img.shields.io/github/actions/workflow/status/podaboutlist/linkfix-for-discord/lint.yml?style=plastic&logo=github&label=code%20style&labelColor=24292e) ![ghcr.io release badge](https://img.shields.io/github/actions/workflow/status/podaboutlist/linkfix-for-discord/publish-image.yml?style=plastic&logo=github&label=ghcr.io%20release&labelColor=24292e)
 
-![LinkFix logo](/media/github-social-preview.png)
+<p align="center">
+  <img src="./media/github-social-preview.png" alt="LinkFix Logo" width="400" />
+</p>
 
 LinkFix for Discord replies to messages containing URLS that don't embed
 properly (`x.com`, `twitter.com`, YouTube Shorts) with URLS that do

@@ -1,7 +1,17 @@
-name: Lint TypeScript and build Dockerfile
-on: [push, pull_request]
+name: 'Lint and publish to ghcr.io'
+on:
+  # publish on releases, e.g. v2.1.13 (image tagged as "2.1.13"
+  # NB: "v" prefix is removed
+  release:
+    types:
+      - published
+
+  # publish "latest" tag on pushes to the main branch
+  push:
+    branches:
+      - main
 jobs:
-  prettier-lint:
+  prettier_lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -24,12 +34,18 @@ jobs:
       - name: Lint src/**/*.ts with Prettier
         run: npm run lint
 
-  docker-build:
+  ghcr_publish:
     runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
     # Don't try to build the Docker image unless linting succeeds
-    needs: prettier-lint
+    needs: prettier_lint
     steps:
       - uses: actions/checkout@v3
 
-      - name: Build Docker image
-        run: docker build . --file Dockerfile --tag ghcr.io/podaboutlist/linkfix-for-discord:$(date +%s)
+      - name: Build and publish a Docker image for ${{ github.repository }}
+        uses: macbre/push-to-ghcr@master
+        with:
+          image_name: ${{ github.repository }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}

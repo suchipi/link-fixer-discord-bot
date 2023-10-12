@@ -1,0 +1,35 @@
+name: Lint TypeScript and build Dockerfile
+on: [push, pull_request]
+jobs:
+  prettier_lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 'lts/*'
+
+      - name: Cache NPM Dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: npm-${{ hashFiles('package-lock.json') }}
+          restore-keys: npm-
+
+      - name: Install dependencies with NPM
+        run: npm ci --ignore-scripts
+
+      - name: Lint src/**/*.ts with Prettier
+        run: npm run lint
+
+  docker_build:
+    runs-on: ubuntu-latest
+    # Don't try to build the Docker image unless linting succeeds
+    needs: prettier_lint
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Build Docker image
+        run: docker build . --file Dockerfile --tag ghcr.io/podaboutlist/linkfix-for-discord:$(date +%s)

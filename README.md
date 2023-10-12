@@ -1,6 +1,8 @@
 # LinkFix for Discord
 
-[![GitHub Actions linting workflow badge][5]][4] [![ghcr.io release badge][6]][3]
+[![Bot status badge][9]][1]
+
+[![GitHub Actions linting workflow badge][5]][4] [![ghcr.io release badge][6]][3] [![support server badge][7]][8]
 
 <div align="center">
   <img src="./media/github-social-preview.png" alt="LinkFix Logo" width="400" />
@@ -93,3 +95,6 @@ See [`LICENSE.txt`](/LICENSE.txt) for the full license details.
 [4]: https://github.com/podaboutlist/linkfix-for-discord/actions/workflows/lint.yml
 [5]: https://img.shields.io/github/actions/workflow/status/podaboutlist/linkfix-for-discord/lint.yml?style=plastic&logo=github&label=code%20style&labelColor=24292e
 [6]: https://img.shields.io/github/actions/workflow/status/podaboutlist/linkfix-for-discord/publish-image.yml?style=plastic&logo=github&label=ghcr.io%20release&labelColor=24292e
+[7]: https://img.shields.io/discord/643644919751376899?style=plastic&logo=discord&logoColor=%23ffffff&label=Support%20Server&labelColor=%2324292e&color=%235961ee&cacheSeconds=60
+[8]: https://podaboutli.st/discord
+[9]: https://dcbadge.vercel.app/api/shield/385950397493280805?bot=true&style=for-the-badge&theme=discord-inverted&labelColor=%2324292e

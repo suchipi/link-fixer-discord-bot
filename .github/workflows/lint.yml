@@ -26,8 +26,10 @@ jobs:
 
   docker-build:
     runs-on: ubuntu-latest
+    # Don't try to build the Docker image unless linting succeeds
+    needs: prettier-lint
     steps:
       - uses: actions/checkout@v3
 
       - name: Build Docker image
-        run: docker build . --file Dockerfile --tag twitfix-for-discord:$(date +%s)
+        run: docker build . --file Dockerfile --tag ghcr.io/podaboutlist/linkfix-for-discord:$(date +%s)

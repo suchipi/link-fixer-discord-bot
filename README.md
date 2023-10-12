@@ -2,17 +2,18 @@
 
 [![GitHub Actions linting workflow badge][5]][4] [![ghcr.io release badge][6]][3]
 
-<p align="center">
+<div align="center">
   <img src="./media/github-social-preview.png" alt="LinkFix Logo" width="400" />
-</p>
+  <p><em>erm... your link, my liege</em></p>
+</div>
 
 LinkFix for Discord replies to messages containing URLS that don't embed
 properly (`x.com`, `twitter.com`, YouTube Shorts) with URLS that do
 (`fxtwitter.com`, `youtu.be`).
 
-
-## [:arrow_forward: Click Here to add LinkFix to your Discord server! :arrow_backward:][1]
-
+<div align="center">
+  <h2><a href="https://discord.com/oauth2/authorize?client_id=385950397493280805&scope=bot&permissions=274878286912">:arrow_forward: Click Here to add LinkFix to your Discord server! :arrow_backward:</a></h2>
+</div>
 
 ## Self-Hosting
 

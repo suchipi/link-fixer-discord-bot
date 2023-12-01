@@ -12,7 +12,10 @@ export const replacements: {
   [identifier: string]: (content: string) => string | null;
 } = {
   "//x.com/": (content) => {
-    const urls = getUrls(content, /https?:\/\/x\.com\/[^\s]+/g);
+    const urls = getUrls(
+      content,
+      /(?:\|\|\s?)?https?:\/\/x\.com\/[^\s]+(?:\s?\|\|)?/g,
+    );
     if (urls.length > 0) {
       return urls
         .map((url) => url.replace("//x.com/", "//vxtwitter.com/"))
@@ -22,10 +25,67 @@ export const replacements: {
     }
   },
   "//twitter.com/": (content) => {
-    const urls = getUrls(content, /https?:\/\/twitter\.com\/[^\s]+/g);
+    const urls = getUrls(
+      content,
+      /(?:\|\|\s?)?https?:\/\/twitter\.com\/[^\s]+(?:\s?\|\|)?/g,
+    );
     if (urls.length > 0) {
       return urls
         .map((url) => url.replace("//twitter.com/", "//vxtwitter.com/"))
+        .join("\n");
+    } else {
+      return null;
+    }
+  },
+  "//instagram.com/": (content) => {
+    const urls = getUrls(
+      content,
+      /(?:\|\|\s?)?https?:\/\/instagram\.com\/[^\s]+(?:\s?\|\|)?/g,
+    );
+    if (urls.length > 0) {
+      return urls
+        .map((url) => url.replace("//instagram.com/", "//ddinstagram.com/"))
+        .join("\n");
+    } else {
+      return null;
+    }
+  },
+  "//www.instagram.com/": (content) => {
+    const urls = getUrls(
+      content,
+      /(?:\|\|\s?)?https?:\/\/www\.instagram\.com\/[^\s]+(?:\s?\|\|)?/g,
+    );
+    if (urls.length > 0) {
+      return urls
+        .map((url) =>
+          url.replace("//www.instagram.com/", "//www.ddinstagram.com/"),
+        )
+        .join("\n");
+    } else {
+      return null;
+    }
+  },
+  "//tiktok.com/": (content) => {
+    const urls = getUrls(
+      content,
+      /(?:\|\|\s?)?https?:\/\/tiktok\.com\/[^\s]+(?:\s?\|\|)?/g,
+    );
+    if (urls.length > 0) {
+      return urls
+        .map((url) => url.replace("//tiktok.com/", "//vxtiktok.com/"))
+        .join("\n");
+    } else {
+      return null;
+    }
+  },
+  "//www.tiktok.com/": (content) => {
+    const urls = getUrls(
+      content,
+      /(?:\|\|\s?)?https?:\/\/www\.tiktok\.com\/[^\s]+(?:\s?\|\|)?/g,
+    );
+    if (urls.length > 0) {
+      return urls
+        .map((url) => url.replace("//www.tiktok.com/", "//www.vxtiktok.com/"))
         .join("\n");
     } else {
       return null;

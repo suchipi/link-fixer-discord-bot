@@ -11,8 +11,13 @@
     "fxtwitter",
     "vxtwitter",
     "youtube",
-    "youtu.be",
-    "youtube-shorts"
+    "youtube-shorts",
+    "instagram",
+    "ddinstagram",
+    "tiktok",
+    "vxtiktok",
+    "reddit",
+    "vxreddit"
   ],
   "homepage": "https://podaboutli.st/discord",
   "bugs": {
@@ -37,7 +42,8 @@
     "build": "rm -rf dist && tsc",
     "start": "node dist/index.js",
     "lint": "prettier src/**/*.ts --check",
-    "prettier-format": "prettier src/**/*.ts --write"
+    "prettier-format": "prettier src/**/*.ts --write",
+    "appcmd-cli": "ts-node src/util/AppCommandsCLI.ts"
   },
   "dependencies": {
     "@types/node": "^20.8.4",
@@ -46,6 +52,8 @@
     "typescript": "^5.2.2"
   },
   "devDependencies": {
-    "prettier": "^3.0.3"
+    "commander": "^11.1.0",
+    "prettier": "^3.0.3",
+    "ts-node": "^10.9.2"
   }
 }

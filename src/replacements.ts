@@ -30,7 +30,7 @@ function fixYTShortsURL(content: string): string {
 
 function fixTwitterURL(content: string): string {
   let c = content.replace(
-    /\/\/(x|twitter).com\/(\w){1,15}\/status\//,
+    /\/\/(x|twitter).com\//,
     `//${process.env.FXTWITTER_URL}/`,
   );
   // TODO: Configure a more robust way of stripping all the tracking crap off
@@ -62,7 +62,10 @@ export const replacements: {
   [identifier: string]: (content: string) => string | null;
 } = {
   "x.com/": (content) => {
-    const urls = getUrls(content, /https?:\/\/x\.com\/[^\s]+/g);
+    const urls = getUrls(
+      content,
+      /https?:\/\/x\.com\/(\w){1,15}\/status\/[^\s]+/g,
+    );
     if (urls.length > 0) {
       return urls.map((url) => fixTwitterURL(url)).join("\n");
     } else {
@@ -70,7 +73,10 @@ export const replacements: {
     }
   },
   "twitter.com/": (content) => {
-    const urls = getUrls(content, /https?:\/\/twitter\.com\/[^\s]+/g);
+    const urls = getUrls(
+      content,
+      /https?:\/\/twitter\.com\/(\w){1,15}\/status\/[^\s]+/g,
+    );
     if (urls.length > 0) {
       return urls.map((url) => fixTwitterURL(url)).join("\n");
     } else {

@@ -8,4 +8,5 @@ services:
     image: ghcr.io/podaboutlist/linkfix-for-discord:latest
     environment:
       - DISCORD_BOT_TOKEN=your.bot.token.here
+      - LINKFIX_LOGGING=0
       - FXTWITTER_URL=fxtwitter.com

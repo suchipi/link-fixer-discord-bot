@@ -1,6 +1,8 @@
 ### Docker / Environment files
-.env
-docker-compose.yml
+.env*
+!.env.example
+docker-compose*.y*ml
+!docker-compose.example.y*ml
 
 
 ### vscode

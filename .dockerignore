@@ -5,13 +5,17 @@
 .github/
 .vscode/
 media/
+src/util
 
 *.log
 *.tar
 *.gz
 
 .env*
-docker-compose*.yml
+docker-compose*.y*ml
 
 .gitattributes
 .gitignore
+
+.pre-commit-config.yaml
+.prettierrc

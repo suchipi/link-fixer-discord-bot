@@ -1,5 +1,7 @@
-import { Client, Events, GatewayIntentBits } from "discord.js";
+import { CachedManager, Client, Collection, CommandInteraction, Events, GatewayIntentBits } from "discord.js";
+import { Commands } from "./commands";
 import { replacements } from "./replacements";
+import { CustomCommand } from "./@types/custom";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -14,9 +16,21 @@ const client = new Client({
   ],
 });
 
+client.commands = new Collection();
+for (const cmd of Commands) {
+  client.commands.set(cmd.data.name, cmd)
+}
+
 client.once(Events.ClientReady, (eventClient) => {
   console.log(`Ready! Logged in as ${eventClient.user.tag}`);
 });
+
+client.on(Events.InteractionCreate, async (interaction) => {
+  if (!interaction.isChatInputCommand()) return;
+
+  const command = interaction.client.commands.get(interaction.commandName);
+  await command.execute(interaction);
+})
 
 client.on(Events.MessageCreate, (message) => {
   if (message.author.bot) {

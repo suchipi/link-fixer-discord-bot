@@ -28,19 +28,27 @@ client.on(Events.MessageCreate, (message) => {
   for (const [identifier, replacer] of replacementsEntries) {
     if (message.content.includes(identifier)) {
       const result = replacer(message.content);
+
       if (result) {
         reply += result + "\n";
       }
     }
   }
 
-  if (reply !== "") {
-    message
-      .reply({ content: reply, allowedMentions: { repliedUser: false } })
-      .catch((err) => {
-        console.error("Failed to reply:", err);
-      });
+  if (reply === "") {
+    return;
   }
+  message
+    .reply({ content: reply, allowedMentions: { repliedUser: false } })
+    .catch((err) => {
+      const errMsg: string = (err as Error).message;
+
+      if (errMsg.includes("Missing Permissions")) {
+        return;
+      }
+
+      console.error("> Failed to reply: ", (err as Error).message);
+    });
 });
 
 // Log in to Discord with your client's token

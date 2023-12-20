@@ -1,5 +1,6 @@
 {
   "include": ["src/**/*.ts"],
+  "exclude": ["src/util/**/*.ts"],
 
   "compilerOptions": {
     "typeRoots": ["src/@types", "node_modules/@types"],

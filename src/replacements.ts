@@ -20,7 +20,7 @@ function fixYTShortsURL(content: string): string {
 
 function fixTwitterURL(content: string): string {
   let c = content.replace(
-    /\/\/(x|twitter).com\//,
+    /\/\/(x|twitter).com\/(\w){1,15}\/status\//,
     `//${process.env.FXTWITTER_URL}/`,
   );
   // TODO: Configure a more robust way of stripping all the tracking crap off

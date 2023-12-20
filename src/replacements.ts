@@ -1,6 +1,3 @@
-// import dotenv from "dotenv";
-// dotenv.config();
-
 function logReplacement(fName: string, original: string, replacement: string) {
   if (!process.env.LINKFIX_LOGGING) {
     return;

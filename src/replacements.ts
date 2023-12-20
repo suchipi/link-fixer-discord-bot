@@ -12,7 +12,10 @@ function getUrls(content: string, regexp: RegExp): Array<string> {
 }
 
 function fixYTShortsURL(content: string): string {
-  let c = content.replace(/(www\.)?(youtube.com\/shorts\/)/, "youtu.be/");
+  let c = content.replace(
+    /(www\.)?(youtube.com\/shorts\/)/,
+    "youtu.be/"
+  );
   c = c.replace(/\?.*/, "");
 
   return c;
@@ -30,10 +33,28 @@ function fixTwitterURL(content: string): string {
   return c;
 }
 
+function fixInstagramURL(content: string): string {
+  let c = content.replace(
+    /(www\.)?(instagram.com\/)/,
+    "ddinstagram.com/"
+  );
+
+  return c;
+}
+
+function fixTikTokURL(content: string): string {
+  let c = content.replace(
+    /((www|vm)\.)?(tiktok.com\/)/,
+    "vxtiktok.com/"
+  );
+
+  return c;
+}
+
 export const replacements: {
   [identifier: string]: (content: string) => string | null;
 } = {
-  "//x.com/": (content) => {
+  "x.com/": (content) => {
     const urls = getUrls(content, /https?:\/\/x\.com\/[^\s]+/g);
     if (urls.length > 0) {
       return urls.map((url) => fixTwitterURL(url)).join("\n");
@@ -41,7 +62,7 @@ export const replacements: {
       return null;
     }
   },
-  "//twitter.com/": (content) => {
+  "twitter.com/": (content) => {
     const urls = getUrls(content, /https?:\/\/twitter\.com\/[^\s]+/g);
     if (urls.length > 0) {
       return urls.map((url) => fixTwitterURL(url)).join("\n");
@@ -53,6 +74,22 @@ export const replacements: {
     const urls = getUrls(content, /https?:\/\/(www\.)?youtube\.com\/[^\s]+/g);
     if (urls.length > 0) {
       return urls.map((url) => fixYTShortsURL(url)).join("\n");
+    } else {
+      return null;
+    }
+  },
+  "instagram.com/": (content) => {
+    const urls = getUrls(content, /https?:\/\/(www\.)?instagram\.com\/[^\s]+/g);
+    if (urls.length > 0) {
+      return urls.map((url) => fixInstagramURL(url)).join("\n");
+    } else {
+      return null;
+    }
+  },
+  "tiktok.com/": (content) => {
+    const urls = getUrls(content, /https?:\/\/((www|vm)\.)?tiktok\.com\/[^\s]+/g);
+    if (urls.length > 0) {
+      return urls.map((url) => fixTikTokURL(url)).join("\n");
     } else {
       return null;
     }

@@ -51,7 +51,7 @@ function fixInstagramURL(content: string): string {
 }
 
 function fixTikTokURL(content: string): string {
-  let c = content.replace(/((www|vm)\.)?(tiktok.com\/)/, "vxtiktok.com/");
+  let c = content.replace(/(tiktok.com\/)/, "vxtiktok.com/");
 
   logReplacement("fixTikTokURL", content, c);
 

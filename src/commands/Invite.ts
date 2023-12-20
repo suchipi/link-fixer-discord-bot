@@ -4,7 +4,7 @@ import { CustomCommand } from "../@types/custom";
 export const InviteCommand: CustomCommand = {
   data: new SlashCommandBuilder()
     .setName("invite")
-    .setDescription("Get a link to invite LinkFix to your server."),
+    .setDescription("Invite LinkFix to your server!"),
   execute: async (interaction: CommandInteraction) => {
     await interaction.reply({
       content:

@@ -41,8 +41,8 @@
   "scripts": {
     "build": "rm -rf dist && tsc",
     "start": "node dist/index.js",
-    "lint": "prettier src/**/*.ts --check",
-    "prettier-format": "prettier src/**/*.ts --write",
+    "lint": "prettier src/*.ts src/**/*.ts --check",
+    "prettier-format": "prettier src/*.ts src/**/*.ts --write",
     "appcmd-cli": "ts-node src/util/AppCommandsCLI.ts"
   },
   "dependencies": {

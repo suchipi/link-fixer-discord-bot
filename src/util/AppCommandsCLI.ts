@@ -82,24 +82,22 @@ const syncCommands: (args: {
     commandsJSON.push(cmd.data.toJSON());
   }
 
-  if (args.global) {
-    console.warn(
-      `Starting a **GLOBAL** sync of ${commandsJSON.length} application commands...`,
-    );
-  } else {
-    console.log(
-      `Syncing ${commandsJSON.length} application commands for guild ${args.guildId}...`,
-    );
-  }
-
   try {
     let data;
 
     if (args.global) {
+      console.warn(
+        `Starting a **GLOBAL** sync of ${commandsJSON.length} application commands...`,
+      );
+
       data = await restClient.put(Routes.applicationCommands(args.clientId), {
         body: commandsJSON,
       });
     } else {
+      console.log(
+        `Syncing ${commandsJSON.length} application commands for guild ${args.guildId}...`,
+      );
+
       data = await restClient.put(
         Routes.applicationGuildCommands(args.clientId, <string>args.guildId),
         { body: commandsJSON },

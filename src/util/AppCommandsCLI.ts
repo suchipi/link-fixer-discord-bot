@@ -108,7 +108,7 @@ const syncCommands: (args: {
 
     // HACK: cast data because restClient.put returns Promise<unknown>
     console.log(
-      `Successfully synched ${(<any>data).length} application commands.`,
+      `Successfully synced ${(<any>data).length} application commands.`,
     );
   } catch (error) {
     console.error(error);

@@ -2,6 +2,7 @@
   "include": ["src/**/*.ts"],
 
   "compilerOptions": {
+    "typeRoots": ["src/@types", "node_modules/@types"],
     "declaration": true,
     "lib": ["ES2022"],
     "target": "ES2020",

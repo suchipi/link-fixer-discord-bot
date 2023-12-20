@@ -12,10 +12,7 @@ function getUrls(content: string, regexp: RegExp): Array<string> {
 }
 
 function fixYTShortsURL(content: string): string {
-  let c = content.replace(
-    /(www\.)?(youtube.com\/shorts\/)/,
-    "youtu.be/"
-  );
+  let c = content.replace(/(www\.)?(youtube.com\/shorts\/)/, "youtu.be/");
   c = c.replace(/\?.*/, "");
 
   return c;
@@ -34,19 +31,13 @@ function fixTwitterURL(content: string): string {
 }
 
 function fixInstagramURL(content: string): string {
-  let c = content.replace(
-    /(www\.)?(instagram.com\/)/,
-    "ddinstagram.com/"
-  );
+  let c = content.replace(/(www\.)?(instagram.com\/)/, "ddinstagram.com/");
 
   return c;
 }
 
 function fixTikTokURL(content: string): string {
-  let c = content.replace(
-    /((www|vm)\.)?(tiktok.com\/)/,
-    "vxtiktok.com/"
-  );
+  let c = content.replace(/((www|vm)\.)?(tiktok.com\/)/, "vxtiktok.com/");
 
   return c;
 }
@@ -87,7 +78,10 @@ export const replacements: {
     }
   },
   "tiktok.com/": (content) => {
-    const urls = getUrls(content, /https?:\/\/((www|vm)\.)?tiktok\.com\/[^\s]+/g);
+    const urls = getUrls(
+      content,
+      /https?:\/\/((www|vm)\.)?tiktok\.com\/[^\s]+/g,
+    );
     if (urls.length > 0) {
       return urls.map((url) => fixTikTokURL(url)).join("\n");
     } else {

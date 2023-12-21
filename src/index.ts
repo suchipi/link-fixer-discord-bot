@@ -31,7 +31,12 @@ for (const cmd of Commands) {
 client.once(Events.ClientReady, (eventClient) => {
   client.user?.setActivity("/help");
 
-  console.log(`Ready! Logged in as ${eventClient.user.tag}`);
+  console.log(`Ready! Logged in as ${eventClient.user.tag}.`);
+
+  const guildCount = eventClient.guilds.cache.size;
+  console.log(
+    `Present in ${guildCount} ${guildCount === 1 ? "guild" : "guilds"}.`,
+  );
 });
 
 client.on(Events.InteractionCreate, async (interaction) => {
@@ -61,6 +66,7 @@ client.on(Events.MessageCreate, (message) => {
   if (reply === "") {
     return;
   }
+
   message
     .reply({ content: reply, allowedMentions: { repliedUser: false } })
     .catch((err) => {

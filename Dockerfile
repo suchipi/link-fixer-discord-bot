@@ -12,10 +12,11 @@ WORKDIR /app
 
 # Install dependencies with NPM
 COPY package*.json .
-RUN npm ci --omit=dev
+RUN [ "npm", "ci", "--omit=dev" ]
 
+# Compile TypeScript
 COPY . .
-
 RUN [ "npm", "run", "build" ]
 
-CMD [ "npm", "start" ]
+# Fire 'er up!
+CMD [ "node", "dist/index.js" ]

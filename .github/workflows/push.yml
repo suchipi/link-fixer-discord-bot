@@ -1,0 +1,15 @@
+name: Push
+
+on:
+  push:
+    # release pipeline runs on push to main with same jobs
+    branches-ignore: ["main"]
+  pull_request:
+
+jobs:
+  lint:
+    uses: "./.github/workflows/_lint.yml"
+
+  build:
+    uses: "./.github/workflows/_build.yml"
+    needs: ["lint"]

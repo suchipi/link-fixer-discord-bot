@@ -6,7 +6,15 @@ on:
     tags: ["**"]
 
 jobs:
-  ghcr:
+  lint:
+    uses: "./.github/workflows/_lint.yml"
+
+  build:
+    uses: "./.github/workflows/_build.yml"
+    needs: ["lint"]
+
+  publish:
+    needs: ["build"]
     runs-on: ubuntu-latest
     permissions:
       packages: write

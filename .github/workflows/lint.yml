@@ -1,7 +1,10 @@
-name: Lint TypeScript and build Dockerfile
-on: [push, pull_request]
+name: Lint
+
+on:
+  workflow_call:
+
 jobs:
-  prettier_lint:
+  prettier:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -9,7 +12,7 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 'lts/*'
+          node-version: "lts/*"
 
       - name: Cache NPM Dependencies
         uses: actions/cache@v3
@@ -23,13 +26,3 @@ jobs:
 
       - name: Lint src/**/*.ts with Prettier
         run: npm run lint
-
-  docker_build:
-    runs-on: ubuntu-latest
-    # Don't try to build the Docker image unless linting succeeds
-    needs: prettier_lint
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Build Docker image
-        run: docker build . --file Dockerfile --tag ghcr.io/podaboutlist/linkfix-for-discord:$(date +%s)

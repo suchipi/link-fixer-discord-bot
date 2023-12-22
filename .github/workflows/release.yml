@@ -1,0 +1,21 @@
+name: Release
+
+on:
+  push:
+    branches: ["main"]
+    tags: ["**"]
+
+jobs:
+  ghcr:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build and publish a Docker image for ${{ github.repository }}
+        uses: macbre/push-to-ghcr@master
+        with:
+          image_name: ${{ github.repository }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}

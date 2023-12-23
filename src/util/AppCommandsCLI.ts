@@ -1,11 +1,26 @@
+import dotenv from "dotenv";
 import {
   REST,
   RESTPostAPIChatInputApplicationCommandsJSONBody,
   Routes,
 } from "discord.js";
 import { Commands } from "../commands";
+/* eslint-disable-next-line import/no-extraneous-dependencies --
+ * HACK: I should really break this CLI script out into its own project.
+ */
 import { Command, Option } from "commander";
-import dotenv from "dotenv";
+
+/**
+ * Helper function for delaying async functions.
+ * Declared here to solve no-loop-func eslint errors.
+ * @param delay Time to sleep, in seconds
+ * @returns
+ */
+const sleep: (delay: number) => Promise<void> = async (delay) => {
+  return new Promise(() => {
+    setTimeout(() => {}, delay * 1000);
+  });
+};
 
 /**
  * Make sure we are running either globally or on a guild.
@@ -104,9 +119,11 @@ const syncCommands: (args: {
       );
     }
 
-    // HACK: cast data because restClient.put returns Promise<unknown>
+    // restClient.put returns an array of objects for application/json requests
     console.log(
-      `Successfully synced ${(<any>data).length} application commands.`,
+      `Successfully synced ${
+        (<Array<object>>data).length
+      } application commands.`,
     );
   } catch (error) {
     console.error(error);
@@ -150,7 +167,7 @@ const deleteCommands: (args: {
     for (let i = timeout; i > 0; --i) {
       console.log(`${i}...`);
       // https://stackoverflow.com/a/49139664
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      await sleep(1);
     }
 
     console.warn("Time's up!");
@@ -167,11 +184,11 @@ const deleteCommands: (args: {
     if (args.global) {
       restClient
         .delete(Routes.applicationCommand(args.clientId, args.commandId))
-        .then(() =>
+        .then(() => {
           console.log(
             `Successfully deleted command ${args.commandId} globally.`,
-          ),
-        )
+          );
+        })
         .catch(console.error);
     } else {
       restClient
@@ -182,11 +199,11 @@ const deleteCommands: (args: {
             args.commandId,
           ),
         )
-        .then(() =>
+        .then(() => {
           console.log(
             `Successfully deleted command ${args.commandId} in guild ${args.guildId}.`,
-          ),
-        )
+          );
+        })
         .catch(console.error);
     }
   } else {
@@ -194,7 +211,9 @@ const deleteCommands: (args: {
     if (args.global) {
       restClient
         .put(Routes.applicationCommands(args.clientId), { body: [] })
-        .then(() => console.log(`Successfully deleted all commands globally.`))
+        .then(() => {
+          console.log("Successfully deleted all commands globally.");
+        })
         .catch(console.error);
     } else {
       restClient
@@ -202,11 +221,11 @@ const deleteCommands: (args: {
           Routes.applicationGuildCommands(args.clientId, <string>args.guildId),
           { body: [] },
         )
-        .then(() =>
+        .then(() => {
           console.log(
             `Successfully deleted all commands in guild ${args.guildId}.`,
-          ),
-        )
+          );
+        })
         .catch(console.error);
     }
   }
@@ -215,7 +234,12 @@ const deleteCommands: (args: {
 /**
  * The main function for our CLI application
  */
-(async () => {
+(() => {
+  /* eslint-disable-next-line
+    @typescript-eslint/no-unsafe-call,
+    @typescript-eslint/no-unsafe-member-access --
+    HACK: Can't figure out how to squash these eslint errors lol
+  */
   dotenv.config();
 
   const program = new Command();
@@ -241,12 +265,12 @@ const deleteCommands: (args: {
       "Update application commands for a specific guild",
     )
     .action(
-      (args: {
+      async (args: {
         clientId: string;
         global: boolean;
         guildId: string | undefined;
       }) => {
-        syncCommands(args);
+        await syncCommands(args);
       },
     );
 
@@ -275,14 +299,14 @@ const deleteCommands: (args: {
       "ID of the specific application command to delete",
     )
     .action(
-      (args: {
+      async (args: {
         clientId: string;
         global: boolean;
         guildId: string | undefined;
         deleteAll: boolean;
         commandId: string | undefined;
       }) => {
-        deleteCommands(args);
+        await deleteCommands(args);
       },
     );
 

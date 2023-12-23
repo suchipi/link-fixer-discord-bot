@@ -1,16 +1,14 @@
-import {
-  CachedManager,
-  Client,
-  Collection,
-  CommandInteraction,
-  Events,
-  GatewayIntentBits,
-} from "discord.js";
+import dotenv from "dotenv";
+import { Client, Collection, Events, GatewayIntentBits } from "discord.js";
 import { Commands } from "./commands";
 import { replacements } from "./replacements";
-import { CustomCommand } from "./@types/custom";
-import dotenv from "dotenv";
+import { CustomCommand } from "./@types/CustomCommand";
 
+/* eslint-disable-next-line
+  @typescript-eslint/no-unsafe-call,
+  @typescript-eslint/no-unsafe-member-access --
+  HACK: Can't figure out how to squash these eslint errors lol
+*/
 dotenv.config();
 
 const replacementsEntries = Object.entries(replacements);
@@ -23,7 +21,8 @@ const client = new Client({
   ],
 });
 
-client.commands = new Collection();
+client.commands = new Collection<string, CustomCommand>();
+
 for (const cmd of Commands) {
   client.commands.set(cmd.data.name, cmd);
 }
@@ -42,7 +41,9 @@ client.once(Events.ClientReady, (eventClient) => {
 client.on(Events.InteractionCreate, async (interaction) => {
   if (!interaction.isChatInputCommand()) return;
 
-  const command = interaction.client.commands.get(interaction.commandName);
+  const command = <CustomCommand>(
+    interaction.client.commands.get(interaction.commandName)
+  );
   await command.execute(interaction);
 });
 
@@ -80,5 +81,4 @@ client.on(Events.MessageCreate, (message) => {
     });
 });
 
-// Log in to Discord with your client's token
-client.login(process.env.DISCORD_BOT_TOKEN);
+void client.login(process.env.DISCORD_BOT_TOKEN);

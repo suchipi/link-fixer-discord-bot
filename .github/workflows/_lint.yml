@@ -4,7 +4,7 @@ on:
   workflow_call:
 
 jobs:
-  eslint:
+  npm_lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

@@ -7,10 +7,10 @@ on:
 
 jobs:
   lint:
-    uses: "./.github/workflows/callable/lint.yml"
+    uses: "./.github/workflows/_lint.yml"
 
   build:
-    uses: "./.github/workflows/callable/build.yml"
+    uses: "./.github/workflows/_build.yml"
     needs: ["lint"]
 
   publish-to-ghcr:

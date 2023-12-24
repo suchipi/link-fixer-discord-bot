@@ -12,23 +12,31 @@ jobs:
   build:
     uses: "./.github/workflows/_build.yml"
 
-  publish-to-ghcr:
+  publish-image:
     needs: ["lint", "build"]
     runs-on: ubuntu-latest
+    env:
+      IMAGE_CALCULATED_TAG: "${{ github.ref == 'refs/heads/main' && 'latest' || github.ref_name }}"
     permissions:
       packages: write
       contents: read
     steps:
       - uses: actions/checkout@v4
 
-      - uses: docker/login-action@v3
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: docker/build-push-action@v5
+      - name: Sanity Check
+        run: |
+            echo "Calculated image tag is ${{ github.repository }}:${{ env.IMAGE_CALCULATED_TAG }}"
+
+      - name: Push Docker Image
+        uses: docker/build-push-action@v5
         with:
           push: true
           tags: |
-            ghcr.io/${{ github.repository }}:${{ github.ref == 'refs/heads/main' && 'latest' || github.ref_name }}
+            ghcr.io/${{ github.repository }}:${{ env.IMAGE_CALCULATED_TAG }}

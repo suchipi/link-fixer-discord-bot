@@ -13,6 +13,7 @@ jobs:
     uses: "./.github/workflows/_build.yml"
 
   publish-image:
+    name: Publish Docker Image
     needs: ["lint", "build"]
     runs-on: ubuntu-latest
     env:

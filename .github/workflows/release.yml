@@ -3,7 +3,7 @@ name: Release
 on:
   push:
     branches: ["main"]
-    tags: ["**"]
+    tags: ["v*"]
 
 jobs:
   lint:
@@ -22,8 +22,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Build and publish a Docker image for ${{ github.repository }}
-        uses: macbre/push-to-ghcr@master
+      - uses: docker/login-action@v3
         with:
-          image_name: ${{ github.repository }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: docker/build-push-action@v5
+        with:
+          push: true
+          tags: |
+            ghcr.io/${{ github.repository }}:${{ github.ref == 'refs/heads/main' && 'latest' || github.ref_name }}

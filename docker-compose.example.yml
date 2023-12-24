@@ -6,9 +6,11 @@
 services:
   linkfix_bot:
     image: ghcr.io/podaboutlist/linkfix-for-discord:latest
+    # Use SIGKILL to emulate Ctrl+C (discord.js does not handle SIGTERM)
+    stop_signal: SIGKILL
     environment:
       - DISCORD_BOT_TOKEN=your.bot.token.here
-      - LINKFIX_LOGGING=0
+      - LINKFIX_DEBUG=0
       - TWITTER_FIX_URL=fxtwitter.com
       - YOUTUBE_FIX_URL=youtu.be
       - INSTAGRAM_FIX_URL=ddinstagram.com

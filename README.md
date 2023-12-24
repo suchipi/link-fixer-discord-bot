@@ -7,7 +7,6 @@
 <div align="center">
   <img src="./media/github-social-preview.png" alt="LinkFix Logo" width="400" />
   <p><em>erm... your link, my liege</em></p>
-  <br />
   <h2><a href="https://discord.com/oauth2/authorize?client_id=385950397493280805&scope=bot&permissions=274878286912">:arrow_forward: Click Here to add LinkFix to your Discord server! :arrow_backward:</a></h2>
 </div>
 
@@ -16,11 +15,7 @@
 
 LinkFix brings link embeds back to your Discord server!
 
-<img
-  src="https://i.vgy.me/kdbRMF.gif"
-  alt="LinkFix in action replying to a message"
-  width="512"
-/>
+<img src="./media/example.gif" alt="LinkFix in action replying to a message" width="512" />
 
 Rich media embeds are not well supported by large social media sites. For example,
 Tweets (a.k.a. "Posts") from Twitter/X no longer embed in Discord. LinkFix solves

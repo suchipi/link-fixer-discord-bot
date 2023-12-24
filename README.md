@@ -7,63 +7,70 @@
 <div align="center">
   <img src="./media/github-social-preview.png" alt="LinkFix Logo" width="400" />
   <p><em>erm... your link, my liege</em></p>
-</div>
-
-LinkFix for Discord replies to messages containing URLS that don't embed
-properly (`x.com`, `twitter.com`, YouTube Shorts) with URLS that do
-(`fxtwitter.com`, `youtu.be`).
-
-<div align="center">
+  <br />
   <h2><a href="https://discord.com/oauth2/authorize?client_id=385950397493280805&scope=bot&permissions=274878286912">:arrow_forward: Click Here to add LinkFix to your Discord server! :arrow_backward:</a></h2>
 </div>
 
-## Self-Hosting
 
-You can easily self-host this bot with Docker using the following steps:
+## What is LinkFix?
 
-1. Copy `docker-compose.example.yml` to `docker-compose.yml` (you **do not** need to clone the repo).
-2. Edit `docker-compose.yml` and change the line reading `DISCORD_BOT_TOKEN=` to specify your bot's token.
-3. Run `docker compose up -d` to start the bot.
+LinkFix brings link embeds back to your Discord server!
 
-**NB:** See [discordjs.guide][2] for instructions on how to install Node.js,
-set up a bot, get a token, and add it to a server.
+<img
+  src="https://i.vgy.me/kdbRMF.gif"
+  alt="LinkFix in action replying to a message"
+  width="512"
+/>
 
+Rich media embeds are not well supported by large social media sites. For example,
+Tweets (a.k.a. "Posts") from Twitter/X no longer embed in Discord. LinkFix solves
+this problem by replying to messages containing such links with vxtwitter-style
+alternatives that support rich media embeds.
+
+
+## Supported Sites
+
+LinkFix currently supports:
+  - Twitter/X (Tweet embeds via [fxtwitter](https://github.com/FixTweet/FixTweet))
+  - TikTok (video embeds via [vxtiktok](https://github.com/dylanpdx/vxtiktok))
+  - Instagram (image, video, and reel embeds via [ddinstagram](https://github.com/Wikidepia/InstaFix))
+  - Reddit (text, image, and video embeds via [vxreddit](https://github.com/dylanpdx/vxReddit))
+  - YouTube Shorts (replies with a `youtu.be` URL that directs to the full player)
+
+
+## Current Commands
+
+  - `/help`: Displays a help message with this list of commands
+  - `/invite`: Get a link to invite LinkFix to a server
+  - `/vote`: Get a link to [vote for LinkFix on Top.gg][10]
 
 ## Contributing
 
-### Set local development
+### Local Development
 
 Follow these steps to get the code up and running:
 
 1) Clone the repo :hugs:
 2) Run `npm install`
 3) Copy `.env.example` to `.env`
-4) Edit `DISCORD_BOT_TOKEN=` in `.env` to provide your bot token
+4) Set `DISCORD_BOT_TOKEN=` in `.env` to your bot token
 5) Run `npm run build && npm start`. You're good to go!
 
-### Building and running the Docker image
+Alternatively, with Docker Compose:
 
-If you want to build and run the Docker image, follow these steps:
+1) Follow steps 1 and 2 above
+2) Copy `docker-compose.example.yml` to `docker-compose.yml`
+3) Edit `docker-compose.yml`
+   a) Change the line `image: ...` to `build: .`
+   b) Set `DISCORD_BOT_TOKEN=` to your bot token
+4) Run `docker-compose up --no-log-prefix`. You're good to go!
 
-1) Follow steps 1-4 from the above list
-2) Run `docker build . --file Dockerfile --tag linkfix` to build the image
-3) Start the container with `docker run --env-file ./.env --name linkfix linkfix` to start the bot!
-
-**NB:** Starting the bot with `docker run` will take over your terminal and
-ctrl+c will **not** be able to kill the process. You will have to open another
-terminal and run `docker kill linkfix` to kill the process. Not sure why this
-is the case! :grinning:
 
 ### Pull Requests
 
-PRs will only be accepted if they:
-
-- Pass all workflow checks:
-   - `npm run lint` passes
-   - `docker build` succeeds
-
 Please write a detailed description for your PR! Also note commit messages will
-be squashed as part of the merge.
+be squashed as part of the merge. PRs must pass all automated checks to qualify
+for a merge.
 
 
 ## License
@@ -92,9 +99,10 @@ See [`LICENSE.txt`](/LICENSE.txt) for the full license details.
 [1]: https://discord.com/oauth2/authorize?client_id=385950397493280805&scope=bot&permissions=274878286912
 [2]: https://discordjs.guide/preparations/setting-up-a-bot-application.html#creating-your-bot
 [3]: https://github.com/podaboutlist/linkfix-for-discord/pkgs/container/linkfix-for-discord
-[4]: https://github.com/podaboutlist/linkfix-for-discord/actions/workflows/lint.yml
-[5]: https://img.shields.io/github/actions/workflow/status/podaboutlist/linkfix-for-discord/lint.yml?style=plastic&logo=github&label=code%20style&labelColor=24292e
-[6]: https://img.shields.io/github/actions/workflow/status/podaboutlist/linkfix-for-discord/publish-image.yml?style=plastic&logo=github&label=ghcr.io%20release&labelColor=24292e
+[4]: https://github.com/podaboutlist/linkfix-for-discord/actions?query=branch%3Amain
+[5]: https://img.shields.io/github/actions/workflow/status/podaboutlist/linkfix-for-discord/push.yml?style=plastic&logo=github&label=code%20style&labelColor=24292e
+[6]: https://img.shields.io/github/actions/workflow/status/podaboutlist/linkfix-for-discord/release.yml?style=plastic&logo=github&label=ghcr.io%20release&labelColor=24292e
 [7]: https://img.shields.io/discord/643644919751376899?style=plastic&logo=discord&logoColor=%23ffffff&label=Support%20Server&labelColor=%2324292e&color=%235961ee&cacheSeconds=60
 [8]: https://podaboutli.st/discord
 [9]: https://dcbadge.vercel.app/api/shield/385950397493280805?bot=true&style=for-the-badge&theme=discord-inverted&labelColor=%2324292e
+[10]: https://top.gg/bot/385950397493280805/vote

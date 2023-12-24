@@ -11,10 +11,9 @@ jobs:
 
   build:
     uses: "./.github/workflows/_build.yml"
-    needs: ["lint"]
 
   publish-to-ghcr:
-    needs: ["build"]
+    needs: ["lint", "build"]
     runs-on: ubuntu-latest
     permissions:
       packages: write

@@ -91,11 +91,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 See [`LICENSE.txt`](/LICENSE.txt) for the full license details.
 
 
-[1]: https://discord.com/oauth2/authorize?client_id=385950397493280805&scope=bot&permissions=274878286912
+[1]: https://discord.com/application-directory/385950397493280805
 [2]: https://discordjs.guide/preparations/setting-up-a-bot-application.html#creating-your-bot
 [3]: https://github.com/podaboutlist/linkfix-for-discord/pkgs/container/linkfix-for-discord
 [4]: https://github.com/podaboutlist/linkfix-for-discord/actions?query=branch%3Amain
-[5]: https://img.shields.io/github/actions/workflow/status/podaboutlist/linkfix-for-discord/push.yml?style=plastic&logo=github&label=code%20style&labelColor=24292e
+[5]: https://img.shields.io/github/actions/workflow/status/podaboutlist/linkfix-for-discord/release.yml?style=plastic&logo=github&label=code%20style&labelColor=24292e&event=push
 [6]: https://img.shields.io/github/actions/workflow/status/podaboutlist/linkfix-for-discord/release.yml?style=plastic&logo=github&label=ghcr.io%20release&labelColor=24292e
 [7]: https://img.shields.io/discord/643644919751376899?style=plastic&logo=discord&logoColor=%23ffffff&label=Support%20Server&labelColor=%2324292e&color=%235961ee&cacheSeconds=60
 [8]: https://podaboutli.st/discord

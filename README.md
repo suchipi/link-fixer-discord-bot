@@ -2,7 +2,7 @@
 
 [![Bot status badge][9]][1]
 
-[![GitHub Actions linting workflow badge][5]][4] [![ghcr.io release badge][6]][3] [![support server badge][7]][8]
+[![GitHub Actions linting workflow badge][5]][4] [![ghcr.io release badge][6]][3] [![support server badge][7]][8] [![Vote for LinkFix on Top.gg][12]][11]
 
 <div align="center">
   <img src="./media/github-social-preview.png" alt="LinkFix Logo" width="400" />
@@ -101,3 +101,5 @@ See [`LICENSE.txt`](/LICENSE.txt) for the full license details.
 [8]: https://podaboutli.st/discord
 [9]: https://dcbadge.vercel.app/api/shield/385950397493280805?bot=true&style=for-the-badge&theme=discord-inverted&labelColor=%2324292e
 [10]: https://top.gg/bot/385950397493280805/vote
+[11]: https://top.gg/bot/385950397493280805/vote
+[12]: https://img.shields.io/badge/Top.gg-Vote%20for%20LinkFix!-24292e?style=plastic&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEiIHZpZXdCb3g9IjEyMCAxMjAgNTgwIDU4MCI+IDxwYXRoIGZpbGw9IiNmZmYiIGQ9Ik02NTUuNzExIDI0N0gzMzAuNzFWNTcySDM5Ny4xMTNDNDIyLjU5OSA1NzIgNDQ3LjA0MiA1NjEuODc2IDQ2NS4wNjQgNTQzLjg1NEM0ODMuMDg2IDUyNS44MzIgNDkzLjIxIDUwMS4zODkgNDkzLjIxIDQ3NS45MDJWNDA5LjVINTU5LjYxM0M1ODUuMDk5IDQwOS41IDYwOS41NDIgMzk5LjM3NSA2MjcuNTY0IDM4MS4zNTRDNjQ1LjU4NiAzNjMuMzMyIDY1NS43MTEgMzM4Ljg4OSA2NTUuNzExIDMxMy40MDJWMjQ3WiI+PC9wYXRoPjxwYXRoIGZpbGw9IiNmZmYiIGQ9Ik0xNDQgMjQ3SDMwNi41VjQwOS41SDE5My42NTdDMTgwLjUzMSA0MDkuNSAxNjcuOTQzIDQwNC4yODYgMTU4LjY2MSAzOTUuMDA0QzE0OS4zNzkgMzg1LjcyMiAxNDQuMTY1IDM3My4xMzQgMTQ0LjE2NSAzNjAuMDA4TDE0NCAyNDdaIj48L3BhdGg+PC9zdmc+Cg==&labelColor=ff3366

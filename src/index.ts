@@ -4,11 +4,6 @@ import { Commands } from "./commands";
 import { replacements } from "./replacements";
 import { CustomCommand } from "./@types/CustomCommand";
 
-/* eslint-disable-next-line
-  @typescript-eslint/no-unsafe-call,
-  @typescript-eslint/no-unsafe-member-access --
-  HACK: Can't figure out how to squash these eslint errors lol
-*/
 dotenv.config();
 
 const replacementsEntries = Object.entries(replacements);

@@ -235,11 +235,6 @@ const deleteCommands: (args: {
  * The main function for our CLI application
  */
 (() => {
-  /* eslint-disable-next-line
-    @typescript-eslint/no-unsafe-call,
-    @typescript-eslint/no-unsafe-member-access --
-    HACK: Can't figure out how to squash these eslint errors lol
-  */
   dotenv.config();
 
   const program = new Command();

@@ -26,3 +26,8 @@ updates:
           - "minor"
     ignore:
       - dependency-name: "dotenv"
+    commit-message:
+      prefix: "dependabot (npm)"
+      prefix-development: "dependabot (npm dev)"
+      include: "scope"
+      

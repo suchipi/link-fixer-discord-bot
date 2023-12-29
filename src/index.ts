@@ -29,18 +29,14 @@ client.once(Events.ClientReady, (eventClient) => {
 
   const guildCount = eventClient.guilds.cache.size;
   console.log(
-    `[Events.ClientReady]\tPresent in ${guildCount} ${
-      guildCount === 1 ? "guild" : "guilds"
-    }.`,
+    `[Events.ClientReady]\tPresent in ${guildCount} ${guildCount === 1 ? "guild" : "guilds"}.`,
   );
 });
 
 client.on(Events.InteractionCreate, async (interaction) => {
   if (!interaction.isChatInputCommand()) return;
 
-  const command = <CustomCommand>(
-    interaction.client.commands.get(interaction.commandName)
-  );
+  const command = <CustomCommand>interaction.client.commands.get(interaction.commandName);
   await command.execute(interaction);
 });
 
@@ -101,10 +97,7 @@ client.on(Events.MessageCreate, (message) => {
         return;
       }
 
-      console.error(
-        "[Events.MessageCreate]\tFailed to reply\t",
-        (err as Error).message,
-      );
+      console.error("[Events.MessageCreate]\tFailed to reply\t", (err as Error).message);
     });
 });
 

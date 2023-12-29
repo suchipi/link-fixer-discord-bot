@@ -1,9 +1,5 @@
 import dotenv from "dotenv";
-import {
-  REST,
-  RESTPostAPIChatInputApplicationCommandsJSONBody,
-  Routes,
-} from "discord.js";
+import { REST, RESTPostAPIChatInputApplicationCommandsJSONBody, Routes } from "discord.js";
 import { Commands } from "../commands";
 /* eslint-disable-next-line import/no-extraneous-dependencies --
  * HACK: I should really break this CLI script out into its own project.
@@ -27,14 +23,11 @@ const sleep: (delay: number) => Promise<void> = async (delay) => {
  * @param {{global: boolean, guildId: string | undefined}} args - CLI args passed to the program
  * @returns true (validated) | false (error validating)
  */
-const validateScope: (args: {
-  global: boolean;
-  guildId: string | undefined;
-}) => boolean = (args) => {
+const validateScope: (args: { global: boolean; guildId: string | undefined }) => boolean = (
+  args,
+) => {
   if (!args.global && !args.guildId) {
-    console.error(
-      "error: please specify option '--global' or '--guild-id <Guild ID>'.",
-    );
+    console.error("error: please specify option '--global' or '--guild-id <Guild ID>'.");
     return false;
   }
   return true;
@@ -119,9 +112,7 @@ const syncCommands: (args: {
     }
 
     // restClient.put returns an array of objects for application/json requests
-    console.log(
-      `Successfully synced ${(<Array<object>>data).length} application commands.`,
-    );
+    console.log(`Successfully synced ${(<Array<object>>data).length} application commands.`);
   } catch (error) {
     console.error(error);
   } finally {
@@ -155,9 +146,7 @@ const deleteCommands: (args: {
   if (args.deleteAll && args.global) {
     const timeout = 5;
 
-    console.warn(
-      "WARNING: YOU ARE ABOUT TO DELETE **ALL** APPLICATION COMMANDS **GLOBALLY**!",
-    );
+    console.warn("WARNING: YOU ARE ABOUT TO DELETE **ALL** APPLICATION COMMANDS **GLOBALLY**!");
 
     console.log(`Waiting ${timeout} seconds to give you a chance to bail...`);
 
@@ -188,11 +177,7 @@ const deleteCommands: (args: {
     } else {
       restClient
         .delete(
-          Routes.applicationGuildCommand(
-            args.clientId,
-            <string>args.guildId,
-            args.commandId,
-          ),
+          Routes.applicationGuildCommand(args.clientId, <string>args.guildId, args.commandId),
         )
         .then(() => {
           console.log(
@@ -249,11 +234,7 @@ const deleteCommands: (args: {
     )
     .option("--guild-id <Guild ID>", "Update application commands for a specific guild")
     .action(
-      async (args: {
-        clientId: string;
-        global: boolean;
-        guildId: string | undefined;
-      }) => {
+      async (args: { clientId: string; global: boolean; guildId: string | undefined }) => {
         await syncCommands(args);
       },
     );
@@ -273,10 +254,7 @@ const deleteCommands: (args: {
         .default(false)
         .conflicts("commandId"),
     )
-    .option(
-      "--command-id <Command ID>",
-      "ID of the specific application command to delete",
-    )
+    .option("--command-id <Command ID>", "ID of the specific application command to delete")
     .action(
       async (args: {
         clientId: string;

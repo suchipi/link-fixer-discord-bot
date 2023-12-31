@@ -68,10 +68,10 @@ jobs:
           # LinkFix vX.Y.Z
           name: LinkFix ${{ github.ref_name }}
           body: |+
-            LinkFix was updated! You can find the latest Docker images on the [packages page](https://github.com/podaboutlist/linkfix-for-discord/pkgs/container/linkfix-for-discord).
+            ## LinkFix was updated!
 
-            Here's everything that's changed:
+            You can find the latest Docker images on the [packages page](https://github.com/podaboutlist/linkfix-for-discord/pkgs/container/linkfix-for-discord).
           # TODO: Change this to `false` once we're happy with the generation
-          draft: true
+          draft: false
           # See .github/release for generation parameters
           generate_release_notes: true

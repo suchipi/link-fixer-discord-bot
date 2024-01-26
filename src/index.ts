@@ -33,6 +33,12 @@ client.on(Events.MessageCreate, (message) => {
   }
 
   if (reply !== "") {
+    // remove the (not-as-good) embed from the existing link
+    message.suppressEmbeds(true).catch((err) => {
+      console.error("Failed to remove embeds:", err);
+    });
+
+    // reply with the URL which generates a better embed
     message.reply(reply).catch((err) => {
       console.error("Failed to reply:", err);
     });

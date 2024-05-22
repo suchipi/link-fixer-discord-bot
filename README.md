@@ -1,6 +1,6 @@
 # Discord "Link Fixer" bot
 
-when someone posts a message with a twitter.com or x.com link, it replies with a vxtwitter.com version of that link
+when someone posts a message with a twitter/instagram/tiktok link, it replies with a vxtwitter/ddinstagram/vxtiktok version of that link
 
 ## Usage
 

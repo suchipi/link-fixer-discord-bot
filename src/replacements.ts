@@ -91,4 +91,83 @@ export const replacements: {
       return null;
     }
   },
+  "//reddit.com/": (content) => {
+    const urls = getUrls(
+      content,
+      /(?:\|\|\s?)?https?:\/\/reddit\.com\/[^\s]+(?:\s?\|\|)?/g,
+    );
+    if (urls.length > 0) {
+      return urls
+        .map((url) => url.replace("//reddit.com/", "//vxreddit.com/"))
+        .join("\n");
+    } else {
+      return null;
+    }
+  },
+  "//www.reddit.com/": (content) => {
+    const urls = getUrls(
+      content,
+      /(?:\|\|\s?)?https?:\/\/www\.reddit\.com\/[^\s]+(?:\s?\|\|)?/g,
+    );
+    if (urls.length > 0) {
+      return urls
+        .map((url) => url.replace("//www.reddit.com/", "//www.vxreddit.com/"))
+        .join("\n");
+    } else {
+      return null;
+    }
+  },
+
+  "//pixiv.com/": (content) => {
+    const urls = getUrls(
+      content,
+      /(?:\|\|\s?)?https?:\/\/pixiv\.com\/[^\s]+(?:\s?\|\|)?/g,
+    );
+    if (urls.length > 0) {
+      return urls
+        .map((url) => url.replace("//pixiv.com/", "//phixiv.com/"))
+        .join("\n");
+    } else {
+      return null;
+    }
+  },
+  "//www.pixiv.com/": (content) => {
+    const urls = getUrls(
+      content,
+      /(?:\|\|\s?)?https?:\/\/www\.pixiv\.com\/[^\s]+(?:\s?\|\|)?/g,
+    );
+    if (urls.length > 0) {
+      return urls
+        .map((url) => url.replace("//www.pixiv.com/", "//www.phixiv.com/"))
+        .join("\n");
+    } else {
+      return null;
+    }
+  },
+  "//pixiv.net/": (content) => {
+    const urls = getUrls(
+      content,
+      /(?:\|\|\s?)?https?:\/\/pixiv\.net\/[^\s]+(?:\s?\|\|)?/g,
+    );
+    if (urls.length > 0) {
+      return urls
+        .map((url) => url.replace("//pixiv.net/", "//phixiv.net/"))
+        .join("\n");
+    } else {
+      return null;
+    }
+  },
+  "//www.pixiv.net/": (content) => {
+    const urls = getUrls(
+      content,
+      /(?:\|\|\s?)?https?:\/\/www\.pixiv\.net\/[^\s]+(?:\s?\|\|)?/g,
+    );
+    if (urls.length > 0) {
+      return urls
+        .map((url) => url.replace("//www.pixiv.net/", "//www.phixiv.net/"))
+        .join("\n");
+    } else {
+      return null;
+    }
+  },
 };

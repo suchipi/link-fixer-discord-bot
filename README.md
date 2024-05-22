@@ -1,6 +1,16 @@
 # Discord "Link Fixer" bot
 
-when someone posts a message with a twitter/instagram/tiktok link, it replies with a vxtwitter/ddinstagram/vxtiktok version of that link
+when someone posts a message with a link whose media doesn't embed (on supported sites), it replies with a version of that link that _does_ embed
+
+Supported sites:
+
+- `x.com` -> `vxtwitter.com`
+- `twitter.com` -> `vxtwitter.com`
+- `instagram.com` -> `ddinstagram.com`
+- `tiktok.com` -> `vxtiktok.com`
+- `reddit.com` -> `vxreddit.com`
+- `pixiv.com` -> `phixiv.com`
+- `pixiv.net` -> `phixiv.net`
 
 ## Usage
 
@@ -14,4 +24,4 @@ See [discordjs.guide](https://discordjs.guide/preparations/setting-up-a-bot-appl
 
 ## License
 
-Public Domain
+Public Domain, with thanks to RalphORama

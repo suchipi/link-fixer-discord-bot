@@ -1,4 +1,6 @@
 {
+  "name": "link-fixer-discord-bot",
+  "private": true,
   "scripts": {
     "build": "rm -rf dist && tsc",
     "start": "npm run build && node dist/index.js"

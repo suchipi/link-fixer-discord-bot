@@ -6,7 +6,7 @@ Supported sites:
 
 - `x.com` -> `vxtwitter.com`
 - `twitter.com` -> `vxtwitter.com`
-- `instagram.com` -> `ddinstagram.com`
+- `instagram.com` -> `instagramez.com`
 - `tiktok.com` -> `vxtiktok.com`
 - `reddit.com` -> `vxreddit.com`
 - `pixiv.com` -> `phixiv.com`

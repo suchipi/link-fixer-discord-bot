@@ -44,7 +44,7 @@ export const replacements: {
     );
     if (urls.length > 0) {
       return urls
-        .map((url) => url.replace("//instagram.com/", "//ddinstagram.com/"))
+        .map((url) => url.replace("//instagram.com/", "//instagramez.com/"))
         .join("\n");
     } else {
       return null;
@@ -58,7 +58,7 @@ export const replacements: {
     if (urls.length > 0) {
       return urls
         .map((url) =>
-          url.replace("//www.instagram.com/", "//www.ddinstagram.com/"),
+          url.replace("//www.instagram.com/", "//www.instagramez.com/"),
         )
         .join("\n");
     } else {

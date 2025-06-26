@@ -9,6 +9,7 @@ const client = new Client({
     GatewayIntentBits.Guilds,
     GatewayIntentBits.GuildMessages,
     GatewayIntentBits.MessageContent,
+    GatewayIntentBits.GuildMessageReactions,
   ],
 });
 
@@ -34,17 +35,39 @@ client.on(Events.MessageCreate, (message) => {
 
   if (reply !== "") {
     // reply with the URL which generates a better embed
-    message.reply(reply).catch((err) => {
-      console.error("Failed to reply:", err);
-    });
+    message
+      .reply(reply)
+      .then((replyMessage) => {
+        const originalMessageAuthorId = message.author.id;
 
-    // delayed as it takes a sec for the embed to appear
-    setTimeout(() => {
-      // remove the (not-as-good) embed from the existing link
-      message.suppressEmbeds(true).catch((err) => {
-        console.error("Failed to remove embeds:", err);
+        const reactionCollector = replyMessage.createReactionCollector({
+          time: 24 * 60 * 60 * 1000,
+          max: 1,
+          filter(reaction, user) {
+            return (
+              user.id === originalMessageAuthorId &&
+              reaction.emoji.name === "❌"
+            );
+          },
+        });
+
+        reactionCollector.on("collect", (reaction, user) => {
+          replyMessage.delete().catch((err) => {
+            console.error("Failed to delete message via reaction:", err);
+          });
+        });
+
+        // delayed as it takes a sec for the embed to appear
+        setTimeout(() => {
+          // remove the (not-as-good) embed from the existing link
+          message.suppressEmbeds(true).catch((err) => {
+            console.error("Failed to remove embeds:", err);
+          });
+        }, 150);
+      })
+      .catch((err) => {
+        console.error("Failed to reply:", err);
       });
-    }, 100);
   }
 });
 

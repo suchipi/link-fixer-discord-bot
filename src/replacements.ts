@@ -18,9 +18,7 @@ export const replacements: {
     );
     if (urls.length > 0) {
       return urls
-        .map((url) =>
-          url.replace("//x.com/", "//peepeepoopoodumdumtwitterx.org/"),
-        )
+        .map((url) => url.replace("//x.com/", "//fixupx.com/"))
         .join("\n");
     } else {
       return null;
@@ -33,9 +31,7 @@ export const replacements: {
     );
     if (urls.length > 0) {
       return urls
-        .map((url) =>
-          url.replace("//twitter.com/", "//peepeepoopoodumdumtwitterx.org/"),
-        )
+        .map((url) => url.replace("//twitter.com/", "//fixupx.com/"))
         .join("\n");
     } else {
       return null;

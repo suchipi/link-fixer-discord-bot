@@ -1,4 +1,4 @@
-import { Client, Events, GatewayIntentBits } from "discord.js";
+import { Client, Events, GatewayIntentBits, MessageFlags } from "discord.js";
 import { replacements } from "./replacements";
 import { token } from "./config.json";
 
@@ -36,7 +36,10 @@ client.on(Events.MessageCreate, (message) => {
   if (reply !== "") {
     // reply with the URL which generates a better embed
     message
-      .reply(reply)
+      .reply({
+        content: reply,
+        flags: MessageFlags.SuppressNotifications,
+      })
       .then((replyMessage) => {
         const originalMessageAuthorId = message.author.id;
 

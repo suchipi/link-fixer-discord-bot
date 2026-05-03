@@ -37,34 +37,6 @@ export const replacements: {
       return null;
     }
   },
-  "//instagram.com/": (content) => {
-    const urls = getUrls(
-      content,
-      /(?:\|\|\s?)?https?:\/\/instagram\.com\/[^\s]+(?:\s?\|\|)?/g,
-    );
-    if (urls.length > 0) {
-      return urls
-        .map((url) => url.replace("//instagram.com/", "//instagramez.com/"))
-        .join("\n");
-    } else {
-      return null;
-    }
-  },
-  "//www.instagram.com/": (content) => {
-    const urls = getUrls(
-      content,
-      /(?:\|\|\s?)?https?:\/\/www\.instagram\.com\/[^\s]+(?:\s?\|\|)?/g,
-    );
-    if (urls.length > 0) {
-      return urls
-        .map((url) =>
-          url.replace("//www.instagram.com/", "//www.instagramez.com/"),
-        )
-        .join("\n");
-    } else {
-      return null;
-    }
-  },
   "//tiktok.com/": (content) => {
     const urls = getUrls(
       content,
@@ -165,28 +137,6 @@ export const replacements: {
     if (urls.length > 0) {
       return urls
         .map((url) => url.replace("//www.pixiv.net/", "//www.phixiv.net/"))
-        .join("\n");
-    } else {
-      return null;
-    }
-  },
-  "//youtube.com/shorts/": (content) => {
-    // https://youtube.com/shorts/ACMoiNeWG1Y?si=fmLhrD6uwzEfDt6B
-    const urls = getUrls(
-      content,
-      /(?:\|\|\s?)?https?:\/\/youtube\.com\/shorts\/[^\s]+(?:\s?\|\|)?/g,
-    );
-    if (urls.length > 0) {
-      return urls
-        .map((url) => {
-          const videoId = url.match(/youtube\.com\/shorts\/([^?/]+)/)?.[1];
-          if (videoId) {
-            return `https://youtube.com/watch?v=${videoId}`;
-          } else {
-            return null;
-          }
-        })
-        .filter((urlOrNull) => urlOrNull != null)
         .join("\n");
     } else {
       return null;

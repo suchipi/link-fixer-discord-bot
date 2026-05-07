@@ -37,6 +37,34 @@ export const replacements: {
       return null;
     }
   },
+  "//instagram.com/": (content) => {
+    const urls = getUrls(
+      content,
+      /(?:\|\|\s?)?https?:\/\/instagram\.com\/[^\s]+(?:\s?\|\|)?/g,
+    );
+    if (urls.length > 0) {
+      return urls
+        .map((url) => url.replace("//instagram.com/", "//kkinstagram.com/"))
+        .join("\n");
+    } else {
+      return null;
+    }
+  },
+  "//www.instagram.com/": (content) => {
+    const urls = getUrls(
+      content,
+      /(?:\|\|\s?)?https?:\/\/www\.instagram\.com\/[^\s]+(?:\s?\|\|)?/g,
+    );
+    if (urls.length > 0) {
+      return urls
+        .map((url) =>
+          url.replace("//www.instagram.com/", "//www.kkinstagram.com/"),
+        )
+        .join("\n");
+    } else {
+      return null;
+    }
+  },
   "//tiktok.com/": (content) => {
     const urls = getUrls(
       content,
